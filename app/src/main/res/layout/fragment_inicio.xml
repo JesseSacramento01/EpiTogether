@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Inicio">
+
+    <!-- Header TextView -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <!-- CalendarView with styling -->
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/CalenderViewCustom"
+        android:dateTextAppearance="@style/CalenderViewDateCustomText"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        >
+
+        <!-- Circle Shape ImageView -->
+        <ImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/circle_shape"
+            />
+
+        <!-- TextView inside the ImageView (inside the circle) -->
+        <TextView
+            android:id="@+id/textInCircle"
+            android:layout_width="249dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Tempo Sem Crise: 12:00.34"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/buttonCrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:text="Registar Crise" />
+
+</LinearLayout>

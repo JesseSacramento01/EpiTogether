@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- activity_main.xml -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true" />
+
+
+        <!-- First ImageButton (Home) -->
+        <ImageButton
+            android:id="@+id/homePage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/button_of_the_homepage"
+            android:src="@drawable/baseline_home_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Second ImageButton (Health Section) to the right of HomePage -->
+        <ImageButton
+            android:id="@+id/healthSection"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/button_of_the_health_section"
+            android:src="@drawable/baseline_heart_broken_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/homePage" />
+
+    <ImageButton
+        android:id="@+id/newRegisterButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/button_to_create_a_new_register"
+        app:srcCompat="@drawable/baseline_add_circle_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/healthSection"
+         />
+
+    <ImageButton
+        android:id="@+id/feedButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/button_to_the_feed_section"
+        android:src="@drawable/baseline_feed_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/newRegisterButton"
+        />
+
+    <ImageButton
+        android:id="@+id/profileButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/button_to_access_the_profile_section"
+        android:src="@drawable/baseline_person_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/feedButton"
+
+
+        />
+
+    <!-- Main Button (positioned under the two ImageButtons) -->
+    </androidx.constraintlayout.widget.ConstraintLayout>

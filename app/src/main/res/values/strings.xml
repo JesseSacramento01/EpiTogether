@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FragmentsT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_of_the_homepage">Button Of The HomePage</string>
+    <string name="button_of_the_health_section">Button of The Health Section</string>
+    <string name="button_to_create_a_new_register">Button to create a new Register</string>
+    <string name="button_to_the_feed_section">Button to the Feed Section</string>
+    <string name="button_to_access_the_profile_section">Button to access the profile section</string>
+</resources>
