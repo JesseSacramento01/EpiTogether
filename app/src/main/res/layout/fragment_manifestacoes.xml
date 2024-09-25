@@ -3,16 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Manifestacoes">
+    tools:context=".ui.Manifestacoes">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Manifestações"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonTipoMovimento"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:text="Tipo de Movimento" />
+
+        <Button
+            android:id="@+id/buttonLocalizacaoDosMovimentos"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="Localização dos Movimentos" />
+
+        <Button
+            android:id="@+id/buttonCorDaPele"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="Cor Da pele" />
+
+        <Button
+            android:id="@+id/buttonRespiração"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="Respiração" />
+
+        <Button
+            android:id="@+id/buttonEstadoDeConciencia"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="Estado De Conciência" />
+
+        <Button
+            android:id="@+id/buttonOutrasManifestacoes"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="Outras Manifestações" />
+
+        <Button
+            android:id="@+id/buttonSalvar"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:text="Salvar" />
+
+
+    </LinearLayout>
 
 </FrameLayout>

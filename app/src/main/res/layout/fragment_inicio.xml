@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Inicio">
+    tools:context=".ui.Inicio">
 
     <!-- Header TextView -->
     <TextView
@@ -55,12 +55,7 @@
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/buttonCrise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:text="Registar Crise" />
+
+
 
 </LinearLayout>

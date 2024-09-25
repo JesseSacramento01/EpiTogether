@@ -7,4 +7,6 @@
     <string name="button_to_create_a_new_register">Button to create a new Register</string>
     <string name="button_to_the_feed_section">Button to the Feed Section</string>
     <string name="button_to_access_the_profile_section">Button to access the profile section</string>
+    <string name="when_clicked_goes_to_medicamentos">When clicked goes to medicamentos</string>
+    <string name="when_clicked_goes_to_consultas">when clicked goes to Consultas</string>
 </resources>

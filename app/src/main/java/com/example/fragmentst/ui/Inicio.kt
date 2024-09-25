@@ -1,4 +1,4 @@
-package com.example.fragmentst
+package com.example.fragmentst.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.fragmentst.databinding.FragmentInicioBinding
 
 class Inicio : Fragment() {
@@ -32,10 +31,6 @@ class Inicio : Fragment() {
         val calendarView: CalendarView = binding.calendarView
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             // Handle date selection
-        }
-
-        binding.buttonCrise.setOnClickListener {
-            findNavController().navigate(R.id.action_inicio_to_registarCrise)
         }
     }
 }

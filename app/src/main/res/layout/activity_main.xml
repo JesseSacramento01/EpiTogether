@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <!-- activity_main.xml -->
     <androidx.fragment.app.FragmentContainerView
@@ -73,6 +73,38 @@
 
 
         />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutH"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/newRegisterButton"
+        app:layout_constraintEnd_toEndOf="@+id/newRegisterButton"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/newRegisterButton"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/register_signs_button"
+            android:layout_width="180dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:text="Registar Sinais e Sintomas" />
+
+        <Button
+            android:id="@+id/buttonCrise"
+            android:layout_width="180dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="10dp"
+            android:text="Registar Crise" />
+
+
+    </LinearLayout>
+
 
     <!-- Main Button (positioned under the two ImageButtons) -->
     </androidx.constraintlayout.widget.ConstraintLayout>
