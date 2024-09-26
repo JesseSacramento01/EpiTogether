@@ -47,7 +47,7 @@ class Manifestacoes : Fragment() {
         val localizacaoMovimento: Button = binding.buttonLocalizacaoDosMovimentos
 
         moveButton.setOnClickListener {
-            items = listOf("tremores", "Espasmos Musculares", "Rígidez", "Perda de Força Muscular", "Ausência de Movimento")
+            items = listOf("Tremores", "Espasmos Musculares", "Rígidez", "Perda de Força Muscular", "Ausência de Movimento")
             createDropdownMenu(items, moveButton)
         }
 

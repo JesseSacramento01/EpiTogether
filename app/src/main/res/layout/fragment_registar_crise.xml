@@ -17,29 +17,43 @@
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="258dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/round_background"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/durationInput" />
+
             <ImageView
                 android:id="@+id/imageBrain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/brain"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <Button
                 android:id="@+id/manifestacoes"
-                android:layout_width="252dp"
-                android:layout_height="48dp"
+                android:layout_width="258dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center|center_vertical"
                 android:text="Manifestações"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.211"
+                app:layout_constraintHorizontal_bias="0.235"
                 app:layout_constraintStart_toEndOf="@id/imageBrain"
-                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
             <ImageView
                 android:id="@+id/clockImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/clock_outline"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/imageBrain" />
@@ -62,10 +76,11 @@
                 android:id="@+id/durationInput"
                 android:layout_width="258dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:autofillHints="00:05:12"
+                android:background="@drawable/round_background"
                 android:ems="10"
-                android:gravity="center_horizontal"
+                android:gravity="center|center_horizontal"
                 android:hint="00:07:12"
                 android:inputType="time"
                 android:textSize="24sp"
@@ -75,6 +90,66 @@
                 app:layout_constraintStart_toEndOf="@+id/clockImage"
                 app:layout_constraintTop_toBottomOf="@+id/manifestacoes" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/calendar_blank_outline"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/run"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/clockImage" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/map_marker_outline"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/recycle_variant"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/video_outline"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="258dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/round_background"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Selecionar Data"
+                android:inputType="date"
+                android:textColorHint="#929090"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
@@ -82,9 +157,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
-            android:text="Registar" />
-
+            android:text="Registar"
+            />
 
     </FrameLayout>
 

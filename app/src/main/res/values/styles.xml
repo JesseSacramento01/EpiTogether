@@ -28,4 +28,28 @@
 
 
 
+    <!-- Custom DatePickerDialog style -->
+    <style name="CustomDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Background color for the dialog -->
+        <item name="android:background">#FFFFFF</item>
+
+        <!-- Customize the header color (date picker top bar) -->
+        <item name="colorPrimary">#008FEE</item>
+
+        <!-- Customize the text color in the DatePicker -->
+        <item name="android:textColorPrimary">#020202</item>
+
+        <!-- Customize the buttons (Cancel/OK) text color -->
+        <item name="android:buttonBarButtonStyle">@style/CustomButtonStyle</item>
+    </style>
+
+    <!-- Custom Button Style for DatePickerDialog -->
+    <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">#2186F3</item> <!-- Customize button text color -->
+    </style>
+
+
+
+
+
 </resources>
