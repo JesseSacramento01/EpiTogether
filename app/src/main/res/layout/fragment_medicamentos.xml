@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Medicamentos">
+
+
+    <ImageView
+        android:id="@+id/addMedication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/plus" />
+
+    <!-- res/layout/fragment_medication_grid.xml -->
+    <GridView
+        android:id="@+id/medication_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="533dp"
+        android:layout_marginTop="100dp"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:padding="10dp"
+        android:verticalSpacing="10dp" />
+
+</FrameLayout>
