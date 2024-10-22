@@ -10,6 +10,11 @@ class CriseRepository(app: Application) {
     private val criseDao : CriseDao = EpiTogetherDB(app).criseDao()
 
 
+    // Function to insert data
+    suspend fun insertData(crise: Crise) {
+        criseDao.insert(crise)
+    }
+
     suspend fun getAllCrises(): List<Crise> {
         return criseDao.getAllCrises()
     }

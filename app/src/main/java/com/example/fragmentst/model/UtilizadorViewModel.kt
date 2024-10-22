@@ -16,4 +16,17 @@ class UtilizadorViewModel(app: Application, private var repository: UtilizadorRe
             repository.insertData(utilizador)
         }
     }
+
+    fun getAllUtilizadores(): List<Utilizador> {
+        var utilizadorList: List<Utilizador> = listOf()
+        viewModelScope.launch {
+            utilizadorList = repository.getAllUtilizadores()
+        }
+        return utilizadorList
+    }
+
+    suspend fun getUtilizadorById(id: Int): Utilizador? {
+        return repository.getUtilizadorById(id)
+    }
+
 }

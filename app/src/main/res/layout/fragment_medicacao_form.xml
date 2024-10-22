@@ -1,14 +1,187 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MedicacaoForm">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Name Label -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <!-- Name EditText -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Medx8"
+        android:text="Medx8"
+        android:backgroundTint="#000000"
+        android:padding="8dp"
+        android:background="@drawable/round_background"
+        app:layout_constraintStart_toEndOf="@id/nameLabel"
+        app:layout_constraintTop_toTopOf="@id/nameLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.6"/>
+
+    <!-- Start Date Label -->
+    <TextView
+        android:id="@+id/labelStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data de Início"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameLabel"/>
+
+    <!-- Start Date EditText -->
+    <EditText
+        android:id="@+id/editTextStartDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="12/02/2024"
+        android:text="12/02/2024"
+        android:backgroundTint="#000000"
+        android:padding="8dp"
+        android:background="@drawable/round_background"
+        app:layout_constraintStart_toEndOf="@id/labelStartDate"
+        app:layout_constraintTop_toTopOf="@id/labelStartDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.6"/>
+
+    <!-- End Date Label -->
+    <TextView
+        android:id="@+id/labelEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data de Fim"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelStartDate"/>
+
+    <!-- End Date EditText -->
+    <EditText
+        android:id="@+id/editTextEndDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="12/02/2024"
+        android:text="12/02/2024"
+        android:backgroundTint="#000000"
+        android:padding="8dp"
+        android:background="@drawable/round_background"
+        app:layout_constraintStart_toEndOf="@id/labelEndDate"
+        app:layout_constraintTop_toTopOf="@id/labelEndDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.6"/>
+
+    <!-- Dose Label -->
+    <TextView
+        android:id="@+id/labelDose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dose"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelEndDate"/>
+
+    <!-- Dose EditText -->
+    <EditText
+        android:id="@+id/editTextDose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="12 mg"
+        android:text="12 mg"
+        android:backgroundTint="#000000"
+        android:padding="8dp"
+        android:background="@drawable/round_background"
+        app:layout_constraintStart_toEndOf="@id/labelDose"
+        app:layout_constraintTop_toTopOf="@id/labelDose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.6"/>
+
+    <!-- Regime Label -->
+    <TextView
+        android:id="@+id/labelRegime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regime"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelDose"/>
+
+    <!-- Regime Spinner -->
+    <Spinner
+        android:id="@+id/spinnerRegime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_background"
+        app:layout_constraintStart_toEndOf="@id/labelRegime"
+        app:layout_constraintTop_toTopOf="@id/labelRegime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.6"/>
+
+    <!-- Time Label -->
+    <TextView
+        android:id="@+id/labelTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horário"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelRegime"/>
+
+    <!-- Time EditText -->
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="hh:mm"
+        android:text="19:11"
+        android:backgroundTint="#000000"
+        android:padding="8dp"
+        android:background="@drawable/round_background"
+        app:layout_constraintStart_toEndOf="@id/labelTime"
+        app:layout_constraintTop_toTopOf="@id/labelTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.6"/>
+
+    <!-- Reminder Label -->
+    <TextView
+        android:id="@+id/labelReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lembrete"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelTime"/>
+
+    <!-- Reminder Switch -->
+    <Switch
+        android:id="@+id/switchReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:thumbTint="#000000"
+        android:trackTint="#000000"
+        app:layout_constraintStart_toEndOf="@id/labelReminder"
+        app:layout_constraintTop_toTopOf="@id/labelReminder"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

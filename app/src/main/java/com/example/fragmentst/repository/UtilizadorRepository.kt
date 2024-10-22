@@ -13,6 +13,18 @@ class UtilizadorRepository(app: Application) {
 
     // Function to insert data
     suspend fun insertData(utilizador: Utilizador) {
-        utilizadorDao.insert(utilizador)
+        val existingUser = utilizadorDao.getUtilizadorById(utilizador.idUtilizador)
+
+        if (existingUser == null) {
+            utilizadorDao.insert(utilizador)
+        }
     }
+        suspend fun getAllUtilizadores(): List<Utilizador> {
+            return utilizadorDao.getAllUtilizadores()
+        }
+
+        suspend fun getUtilizadorById(id: Int): Utilizador? {
+            return utilizadorDao.getUtilizadorById(id)
+        }
+
 }

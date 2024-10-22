@@ -1,4 +1,4 @@
-package com.example.fragmentst.ui
+package com.example.fragmentst
 
 import android.os.Bundle
 import android.view.View
@@ -14,7 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
-import com.example.fragmentst.R
 import com.example.fragmentst.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -55,8 +54,11 @@ class MainActivity : AppCompatActivity() {
         // Set up navigation item selection
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> {
-                    Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_criarConta -> {
+                    Toast.makeText(this, "Criar Conta Clicked", Toast.LENGTH_SHORT).show()
+                    val navController = findNavController(R.id.nav_host_fragment)
+                    // Navigate to the Fragment directly
+                    navController.navigate(R.id.criarConta)
                 }
 
                 R.id.nav_profile -> {

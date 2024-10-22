@@ -1,4 +1,4 @@
-package com.example.fragmentst.ui
+package com.example.fragmentst
 
 import android.os.Bundle
 import android.view.LayoutInflater

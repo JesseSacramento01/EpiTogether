@@ -1,59 +1,166 @@
 package com.example.fragmentst
 
+import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.databinding.FragmentCriarContaBinding
+import com.example.fragmentst.db.Crise
+import com.example.fragmentst.db.Utilizador
+import com.example.fragmentst.model.CriseViewModel
+import com.example.fragmentst.model.CriseViewModelFactory
+import com.example.fragmentst.model.UtilizadorViewModel
+import com.example.fragmentst.model.UtilizadorViewModelFactory
+import com.example.fragmentst.repository.CriseRepository
+import com.example.fragmentst.repository.UtilizadorRepository
+import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CriarConta.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CriarConta : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var binding: FragmentCriarContaBinding
+
+    private lateinit var utilizadorViewModel: UtilizadorViewModel
+    var spGenero = ""
+    var tipoUtilizador = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_criar_conta, container, false)
+        binding = FragmentCriarContaBinding.inflate(inflater, container, false)
+
+        val generoSpinner: Spinner = binding.spGenero
+        val generoItems = listOf("Masculino", "Feminino", "Outro")
+
+        val generoAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, generoItems)
+        generoSpinner.adapter = generoAdapter
+
+        generoSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                spGenero = generoItems[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+
+        val utilizadorSpinner: Spinner = binding.spTipoUtilizador
+        val utilizadorItems = listOf("Prof de saúde", "Adolescente", "Prof. de Educação", "Pais")
+
+        val utilizadorAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, utilizadorItems)
+        utilizadorSpinner.adapter = utilizadorAdapter
+
+
+        utilizadorSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                tipoUtilizador = utilizadorItems[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+
+
+        }
+
+
+        val application = requireActivity().application
+
+        val repository = UtilizadorRepository(application)
+
+        val factory = UtilizadorViewModelFactory(application, repository)
+        utilizadorViewModel = ViewModelProvider(this, factory)[UtilizadorViewModel::class.java]
+
+
+
+        lifecycleScope.launch {
+            val user = utilizadorViewModel.getUtilizadorById(1)  // Calling the suspend function
+
+            if (user != null) {
+                Toast.makeText(requireContext(), "User found: ${user.nome}", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CriarConta.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CriarConta().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Create the MaterialDatePicker
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select Birthdate")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds()) // Optional: default to today
+            .build()
+
+
+        binding.tvDataNascimento.setOnClickListener {
+            datePicker.show(parentFragmentManager, "MATERIAL_DATE_PICKER")
+
+            // Add a listener for when the user confirms the date
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                // Convert the selection to a date format
+                val selectedDate = Date(selection)
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                binding.tvDataNascimento.text = dateFormat.format(selectedDate)
             }
+        }
+
+        binding.registarButton.setOnClickListener {
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+                .setTitle("Registo de Conta")
+                .setMessage("Conta Registrada com Sucesso! ")
+                .setPositiveButton("OK") { dialog, _ ->
+
+                    dialog.dismiss()
+                }
+            dialogBuilder.create().show()
+
+
+            val name = binding.etNome.text.toString()
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            val birthDate = binding.tvDataNascimento.toString()
+            val tel = binding.etTelefone.text.toString()
+            val address = binding.etEndereco.text.toString()
+
+
+            val utilizador = Utilizador(1, name, email, password, tipoUtilizador, birthDate, spGenero,
+                tel, address
+            )
+
+            utilizadorViewModel.insertData(utilizador)
+        }
     }
 }

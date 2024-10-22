@@ -8,8 +8,7 @@ import androidx.room.PrimaryKey
 
 
 data class Utilizador(
-    @PrimaryKey(autoGenerate = true)
-    val idUtilizador: Int = 0,
+    @PrimaryKey(autoGenerate = true) val idUtilizador: Int = 0,
     val nome: String,
     val email: String,
     val password: String,

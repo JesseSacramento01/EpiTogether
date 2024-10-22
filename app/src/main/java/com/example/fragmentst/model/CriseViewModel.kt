@@ -1,12 +1,23 @@
 package com.example.fragmentst.model
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fragmentst.db.Crise
 import com.example.fragmentst.repository.CriseRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CriseViewModel(private val repository: CriseRepository) : ViewModel() {
+class CriseViewModel(application: Application, private val repository: CriseRepository) :  AndroidViewModel(application) {
+
+
+    // Function to insert data
+    fun insertData(crise: Crise) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertData(crise)
+        }
+    }
 
     fun getAllCrises(): List<Crise> {
         var crisesList: List<Crise> = listOf()

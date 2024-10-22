@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".MainActivity">
 
-    <!-- activity_main.xml -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
+
+
+
+
+    <!-- Main content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/nav_graph"
-        app:defaultNavHost="true" />
+        android:layout_height="match_parent">
+
+
+        <!-- activity_main.xml -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
         <!-- First ImageButton (Home) -->
@@ -39,72 +58,77 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/homePage" />
 
-    <ImageButton
-        android:id="@+id/newRegisterButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:contentDescription="@string/button_to_create_a_new_register"
-        app:srcCompat="@drawable/baseline_add_circle_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/healthSection"
-         />
+        <ImageButton
+            android:id="@+id/newRegisterButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/button_to_create_a_new_register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/healthSection"
+            app:srcCompat="@drawable/baseline_add_circle_24" />
 
-    <ImageButton
-        android:id="@+id/feedButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:contentDescription="@string/button_to_the_feed_section"
-        android:src="@drawable/baseline_feed_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/newRegisterButton"
-        />
+        <ImageButton
+            android:id="@+id/feedButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/button_to_the_feed_section"
+            android:src="@drawable/baseline_feed_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/newRegisterButton" />
 
-    <ImageButton
-        android:id="@+id/profileButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:contentDescription="@string/button_to_access_the_profile_section"
-        android:src="@drawable/baseline_person_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/feedButton"
+        <ImageButton
+            android:id="@+id/profileButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/button_to_access_the_profile_section"
+            android:src="@drawable/baseline_person_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/feedButton"
 
 
-        />
+            />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutH"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/newRegisterButton"
-        app:layout_constraintEnd_toEndOf="@+id/newRegisterButton"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="@+id/newRegisterButton"
-        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/linearLayoutH"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/newRegisterButton"
+            app:layout_constraintEnd_toEndOf="@+id/newRegisterButton"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/newRegisterButton">
 
-        <Button
-            android:id="@+id/register_signs_button"
-            android:layout_width="180dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:text="Registar Sinais e Sintomas" />
+            <Button
+                android:id="@+id/register_signs_button"
+                android:layout_width="180dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="20dp"
+                android:text="Registar Sinais e Sintomas" />
 
-        <Button
-            android:id="@+id/buttonCrise"
-            android:layout_width="180dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="10dp"
-            android:text="Registar Crise" />
+            <Button
+                android:id="@+id/buttonCrise"
+                android:layout_width="180dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:text="Registar Crise" />
+        </LinearLayout>
 
-
-    </LinearLayout>
-
-
-    <!-- Main Button (positioned under the two ImageButtons) -->
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation drawer (side menu) -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/drawer_menu"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+

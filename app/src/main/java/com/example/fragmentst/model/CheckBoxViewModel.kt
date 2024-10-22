@@ -5,6 +5,14 @@ import androidx.lifecycle.ViewModel
 
 class CheckBoxViewModel : ViewModel() {
 
+    var tipoMovimento : String? = null
+    var localizacaoMovimento : String? = null
+    var corDaPele : String? = null
+    var respiracao : String? = null
+    var estadoDeConciencia : String? = null
+    var outrasManifestacoes : String? = null
+
+
     // Store the checkbox states for different buttons
     val checkBoxStatesMap: MutableLiveData<MutableMap<String, MutableList<Boolean>>> by lazy {
         MutableLiveData<MutableMap<String, MutableList<Boolean>>>().apply {

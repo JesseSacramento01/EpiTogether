@@ -20,5 +20,5 @@ data class Autenticacao(
 
     val idUtilizador: Int,
     val token: String,
-    val dataHoraExpiracao: String // Timestamp (ISO format)
+    val dataHoraExpiracao: String
 )

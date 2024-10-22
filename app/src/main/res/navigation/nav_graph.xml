@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/inicio"
-        android:name="com.example.fragmentst.ui.Inicio"
-        android:label="fragment_inicio"
+        android:name="com.example.fragmentst.Inicio"
+        android:label=""
         tools:layout="@layout/fragment_inicio" >
         <action
             android:id="@+id/action_inicio_to_registarCrise"
@@ -16,11 +16,14 @@
         <action
             android:id="@+id/action_inicio_to_saude"
             app:destination="@id/saude" />
+        <action
+            android:id="@+id/action_inicio_to_criarConta"
+            app:destination="@id/criarConta" />
     </fragment>
     <fragment
         android:id="@+id/registarCrise"
-        android:name="com.example.fragmentst.ui.RegistarCrise"
-        android:label="fragment_registar_crise"
+        android:name="com.example.fragmentst.RegistarCrise"
+        android:label=""
         tools:layout="@layout/fragment_registar_crise" >
         <action
             android:id="@+id/action_registarCrise_to_manifestacoes2"
@@ -31,8 +34,8 @@
     </fragment>
     <fragment
         android:id="@+id/manifestacoes2"
-        android:name="com.example.fragmentst.ui.Manifestacoes"
-        android:label="fragment_manifestacoes"
+        android:name="com.example.fragmentst.Manifestacoes"
+        android:label=""
         tools:layout="@layout/fragment_manifestacoes" >
         <action
             android:id="@+id/action_manifestacoes2_to_registarCrise"
@@ -40,7 +43,28 @@
     </fragment>
     <fragment
         android:id="@+id/saude"
-        android:name="com.example.fragmentst.ui.Saude"
-        android:label="fragment_saude"
-        tools:layout="@layout/fragment_saude" />
+        android:name="com.example.fragmentst.Saude"
+        android:label=""
+        tools:layout="@layout/fragment_saude" >
+        <action
+            android:id="@+id/action_saude_to_medicamentos"
+            app:destination="@id/medicamentos" />
+        <action
+            android:id="@+id/action_saude_to_consulta"
+            app:destination="@id/consulta" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicamentos"
+        android:name="com.example.fragmentst.Medicamentos"
+        android:label="fragment_medicamentos"
+        tools:layout="@layout/fragment_medicamentos" />
+    <fragment
+        android:id="@+id/consulta"
+        android:name="com.example.fragmentst.Consulta"
+        android:label="fragment_consulta"
+        tools:layout="@layout/fragment_consulta" />
+    <fragment
+        android:id="@+id/criarConta"
+        android:name="com.example.fragmentst.CriarConta"
+        android:label="CriarConta" />
 </navigation>

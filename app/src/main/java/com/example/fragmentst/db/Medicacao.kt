@@ -24,7 +24,6 @@ import androidx.room.PrimaryKey
 data class Medicacao(
 
     @PrimaryKey(autoGenerate = true) val idMedicacao: Int = 0,
-
     val idUtilizador: Int,
     val nomeMedicamento: String,
     val dose: String?,

@@ -4,26 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Saude">
+    tools:context=".Saude">
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/medicamentoSection"
         android:layout_width="132dp"
         android:layout_height="123dp"
         android:layout_marginTop="400dp"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/round_background_dropdown"
         android:contentDescription="@string/when_clicked_goes_to_medicamentos"
         android:src="@drawable/baseline_medical_services_24" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/consultaSection"
         android:layout_width="132dp"
         android:layout_height="123dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="150dp"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/round_background_dropdown"
         android:padding="10dp"
         android:contentDescription="@string/when_clicked_goes_to_consultas"
         android:src="@drawable/baseline_calendar_today_24" />
+
+    <TextView
+        android:id="@+id/consultaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="290dp"
+        android:text="Consulta"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/medicacaoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="540dp"
+        android:text="Medicação"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 </FrameLayout>

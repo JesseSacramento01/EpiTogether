@@ -1,14 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CriarConta">
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Name Field -->
+
+    <!-- Email Field -->
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_nome_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="72dp"
+        android:gravity="center"
+        android:text="Nome"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/et_nome"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:hint="Digite seu nome"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toEndOf="@+id/tv_nome_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_nome_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_email_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_nome" />
+
+    <!-- Password Field -->
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:hint="Digite seu email"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toEndOf="@+id/tv_email_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_email_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_password_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Senha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+    <!-- Tipo de Utilizador Field -->
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:hint="Digite sua senha"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toEndOf="@+id/tv_password_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_password_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_tipo_utilizador_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Tipo de Utilizador"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <!-- Data de Nascimento Field -->
+
+    <!-- Genero Field -->
+
+    <Spinner
+        android:id="@+id/sp_tipo_utilizador"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintStart_toEndOf="@+id/tv_tipo_utilizador_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_tipo_utilizador_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_data_nascimento_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Data de Nascimento"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_tipo_utilizador" />
+
+    <TextView
+        android:id="@+id/tv_data_nascimento"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:gravity="center_vertical"
+        android:hint="DD/MM/YYYY"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toEndOf="@+id/tv_data_nascimento_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_data_nascimento_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_genero_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Genero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_data_nascimento" />
+
+    <!-- Telefone Field -->
+
+    <Spinner
+        android:id="@+id/sp_genero"
+        android:layout_width="204dp"
+        android:layout_height="49dp"
+        android:background="@drawable/round_background"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toEndOf="@+id/tv_genero_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_genero_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_telefone_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Telefone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_genero" />
+
+    <!-- Endereco Field -->
+    <EditText
+        android:id="@+id/et_telefone"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:hint="Digite seu telefone"
+        android:inputType="phone"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.798"
+        app:layout_constraintStart_toEndOf="@+id/tv_telefone_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_telefone_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_endereco_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Endereço"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_telefone" />
+
+    <EditText
+        android:id="@+id/et_endereco"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/round_background"
+        android:hint="Digite seu endereço"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintStart_toEndOf="@+id/tv_endereco_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_endereco_label"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <Button
+        android:id="@+id/registarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Registar"
+        app:layout_constraintEnd_toEndOf="@+id/et_endereco"
+        app:layout_constraintStart_toStartOf="@+id/tv_endereco_label"
+        app:layout_constraintTop_toBottomOf="@+id/et_endereco" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
