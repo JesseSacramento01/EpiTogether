@@ -36,6 +36,8 @@ class CriarConta : Fragment() {
 
     lateinit var binding: FragmentCriarContaBinding
 
+    private var datePicker: MaterialDatePicker<Long>? = null
+
     private lateinit var utilizadorViewModel: UtilizadorViewModel
     var spGenero = ""
     var tipoUtilizador = ""
@@ -102,10 +104,16 @@ class CriarConta : Fragment() {
 
 
         lifecycleScope.launch {
-            val user = utilizadorViewModel.getUtilizadorById(1)  // Calling the suspend function
+            val user = utilizadorViewModel.getUtilizadorById(5)  // Calling the suspend function
 
             if (user != null) {
+                if (user.nome == "") {
+                    Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT)
+                        .show()
+                }
                 Toast.makeText(requireContext(), "User found: ${user.nome}", Toast.LENGTH_SHORT)
+                    .show()
+                Toast.makeText(requireContext(), "User found: ${user.email}", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
@@ -119,48 +127,51 @@ class CriarConta : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Create the MaterialDatePicker
-        val datePicker = MaterialDatePicker.Builder.datePicker()
+        datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select Birthdate")
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds()) // Optional: default to today
             .build()
 
 
         binding.tvDataNascimento.setOnClickListener {
-            datePicker.show(parentFragmentManager, "MATERIAL_DATE_PICKER")
 
-            // Add a listener for when the user confirms the date
-            datePicker.addOnPositiveButtonClickListener { selection ->
-                // Convert the selection to a date format
-                val selectedDate = Date(selection)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                binding.tvDataNascimento.text = dateFormat.format(selectedDate)
-            }
-        }
+            if (!datePicker!!.isAdded) {
+                datePicker!!.show(parentFragmentManager, "MATERIAL_DATE_PICKER")
 
-        binding.registarButton.setOnClickListener {
-            val dialogBuilder = AlertDialog.Builder(requireContext())
-                .setTitle("Registo de Conta")
-                .setMessage("Conta Registrada com Sucesso! ")
-                .setPositiveButton("OK") { dialog, _ ->
+                datePicker!!.addOnPositiveButtonClickListener { selection ->
 
-                    dialog.dismiss()
+                    val selectedDate = Date(selection)
+                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    binding.tvDataNascimento.text = dateFormat.format(selectedDate)
                 }
-            dialogBuilder.create().show()
+            }
 
+            binding.registarButton.setOnClickListener {
 
-            val name = binding.etNome.text.toString()
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
-            val birthDate = binding.tvDataNascimento.toString()
-            val tel = binding.etTelefone.text.toString()
-            val address = binding.etEndereco.text.toString()
+                val name = binding.etNome.text.toString()
+                val email = binding.etEmail.text.toString()
+                val password = binding.etPassword.text.toString()
+                val birthDate = binding.tvDataNascimento.text.toString()
+                val tel = binding.etTelefone.text.toString()
+                val address = binding.etEndereco.text.toString()
 
+                val utilizador = Utilizador(
+                    name, email, password, tipoUtilizador, birthDate, spGenero,
+                    tel, address
+                )
 
-            val utilizador = Utilizador(1, name, email, password, tipoUtilizador, birthDate, spGenero,
-                tel, address
-            )
+                lifecycleScope.launch {
+                    utilizadorViewModel.insertData(utilizador)
+                    val dialogBuilder = AlertDialog.Builder(requireContext())
+                        .setTitle("Registo de Conta")
+                        .setMessage("Conta Registrada com Sucesso!")
+                        .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                    dialogBuilder.create().show()
 
-            utilizadorViewModel.insertData(utilizador)
+                    findNavController().navigate(R.id.action_criarConta_to_login)
+                }
+            }
+
         }
     }
 }

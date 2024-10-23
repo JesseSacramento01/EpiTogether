@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_inicio_to_criarConta"
             app:destination="@id/criarConta" />
+        <action
+            android:id="@+id/action_inicio_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/registarCrise"
@@ -66,5 +69,18 @@
     <fragment
         android:id="@+id/criarConta"
         android:name="com.example.fragmentst.CriarConta"
-        android:label="CriarConta" />
+        android:label="CriarConta" >
+        <action
+            android:id="@+id/action_criarConta_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.fragmentst.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
 </navigation>

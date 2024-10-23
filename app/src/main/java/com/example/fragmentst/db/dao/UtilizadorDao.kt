@@ -4,12 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.fragmentst.db.Utilizador
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UtilizadorDao: BaseDao<Utilizador> {
 
     @Query("SELECT * FROM utilizador")
-    suspend fun getAllUtilizadores(): List<Utilizador>
+    fun getAllUtilizadores(): Flow<List<Utilizador>>
 
     @Query("SELECT * FROM utilizador WHERE idUtilizador = :id")
     suspend fun getUtilizadorById(id: Int): Utilizador?

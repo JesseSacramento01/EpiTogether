@@ -1,19 +1,71 @@
 package com.example.fragmentst
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.databinding.FragmentLoginBinding
+import com.example.fragmentst.db.Utilizador
+import com.example.fragmentst.model.UtilizadorViewModel
+import com.example.fragmentst.model.UtilizadorViewModelFactory
+import com.example.fragmentst.repository.UtilizadorRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 
 class Login : Fragment() {
 
+    lateinit var binding: FragmentLoginBinding
+    private lateinit var utilizadorViewModel: UtilizadorViewModel
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+
+        // assign the value for the utilizadorViewModel
+        val application = requireActivity().application
+
+        val repository = UtilizadorRepository(application)
+
+        val factory = UtilizadorViewModelFactory(application, repository)
+        utilizadorViewModel = ViewModelProvider(this, factory)[UtilizadorViewModel::class.java]
+
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLogin.setOnClickListener {
+            // Collect the Flow in a lifecycle-aware way
+            viewLifecycleOwner.lifecycleScope.launch {
+                utilizadorViewModel.utilizadorListFlow.collect { utilizadores ->
+                    for (utilizador in utilizadores) {
+                        if (binding.etUsername.text.toString() == utilizador.nome
+                            && binding.etPassword.text.toString() == utilizador.password
+                        ) {
+                            val dialogBuilder = AlertDialog.Builder(requireContext())
+                                .setTitle("Login")
+                                .setMessage("Login efectuado com sucesso! ")
+                            dialogBuilder.create().show()
+
+                            findNavController().navigate(R.id.action_login_to_inicio)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

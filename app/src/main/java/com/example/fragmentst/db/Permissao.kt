@@ -17,11 +17,8 @@ import androidx.room.PrimaryKey
         ForeignKey(
 
             entity = Utilizador::class,
-
             parentColumns = ["idUtilizador"],
-
             childColumns = ["idProfissionalEducacao"],
-
             onDelete = ForeignKey.CASCADE
 
         ),
@@ -41,7 +38,8 @@ import androidx.room.PrimaryKey
 
 data class Permissao(
 
-    @PrimaryKey(autoGenerate = true) val idPermissao: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val idPermissao: Int = 0,
 
     val idProfissionalEducacao: Int,
     val idAdolescente: Int,

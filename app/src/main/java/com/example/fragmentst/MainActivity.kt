@@ -61,8 +61,9 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.criarConta)
                 }
 
-                R.id.nav_profile -> {
-                    Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_login -> {
+                    val navController = findNavController(R.id.nav_host_fragment)
+                    navController.navigate(R.id.login)
                 }
 
                 R.id.nav_settings -> {
