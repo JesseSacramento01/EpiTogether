@@ -199,7 +199,7 @@ class RegistarCrise : Fragment() {
                 .setMessage("Crise Registrada com Sucesso! ")
                 .setPositiveButton("OK") { dialog, _ ->
 
-                    val currentCrise = Crise(1,1,
+                    val currentCrise = Crise(5,
                         sharedViewModel.date, sharedViewModel.time,
                         sharedViewModel.duration, sharedViewModel.cycleSpinner,
                         checkBoxViewModel.tipoMovimento, checkBoxViewModel.localizacaoMovimento,
@@ -207,7 +207,16 @@ class RegistarCrise : Fragment() {
                         checkBoxViewModel.estadoDeConciencia, checkBoxViewModel.outrasManifestacoes,
                         null,sharedViewModel.locationSpinner, sharedViewModel.activitySpinner,null)
 
-                    criseViewModel.insertData(currentCrise)
+
+                    lifecycleScope.launch {
+                        criseViewModel.insertData(currentCrise)
+                    }
+
+                    lifecycleScope.launch {
+                        criseViewModel.itemList.observe(viewLifecycleOwner) { _ ->
+                                addItem(currentCrise)
+                        }
+                    }
 
                     dialog.dismiss()
                     findNavController().navigate(R.id.action_registarCrise_to_inicio2)
@@ -334,5 +343,9 @@ class RegistarCrise : Fragment() {
             .show()
     }
 
-
+    fun addItem(item: Crise) {
+        val currentList = criseViewModel.itemList.value.orEmpty().toMutableList()
+        currentList.add(item)
+        criseViewModel.setItems(currentList)
+    }
 }

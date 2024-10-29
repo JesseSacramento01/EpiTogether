@@ -1,5 +1,6 @@
 package com.example.fragmentst.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -9,7 +10,7 @@ import com.example.fragmentst.db.Crise
 interface CriseDao: BaseDao<Crise> {
 
         @Query("SELECT * FROM crise")
-        suspend fun getAllCrises(): List<Crise>
+        fun getAllCrises(): LiveData<List<Crise>>
 
         @Query("SELECT * FROM crise WHERE idCrise = :id")
         suspend fun getCriseById(id: Int): Crise?

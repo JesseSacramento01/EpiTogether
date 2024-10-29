@@ -28,7 +28,6 @@ class Medicamentos : Fragment() {
                     Medicacao(3, 1100, "5med", "Diariamente",
             "10/10/2024", "22/10/2024", "Diario", "11:30",
             true)
-
         )
 
         val gridView = binding.medicationGridView

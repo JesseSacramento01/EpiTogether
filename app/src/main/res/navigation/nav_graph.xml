@@ -82,5 +82,13 @@
         <action
             android:id="@+id/action_login_to_inicio"
             app:destination="@id/inicio" />
+        <action
+            android:id="@+id/action_login_to_crisesLayout"
+            app:destination="@id/crisesLayout" />
     </fragment>
+    <fragment
+        android:id="@+id/crisesLayout"
+        android:name="com.example.fragmentst.CrisesLayout"
+        android:label="fragment_crises_layout"
+        tools:layout="@layout/fragment_crises_layout" />
 </navigation>

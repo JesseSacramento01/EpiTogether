@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
             childColumns = ["idUtilizador"], onDelete = ForeignKey.CASCADE)])
 
 data class Crise(
-    @PrimaryKey(autoGenerate = true) val idCrise: Int = 0,
+
     val idUtilizador: Int,
     val data: String?,
     val hora: String?,
@@ -24,5 +24,9 @@ data class Crise(
     val possiveisCausas: String? = null,
     val localDaCrise: String?,
     val atividadePraticada: String?,
-    val observacoes: String? = null
-)
+    val observacoes: String? = null ){
+
+    @PrimaryKey(autoGenerate = true)
+    var  idCrise: Int = 0
+}
+

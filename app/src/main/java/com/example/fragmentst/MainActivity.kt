@@ -69,6 +69,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_settings -> {
                     Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
                 }
+
+                R.id.nav_crises -> {
+                    val navController = findNavController(R.id.nav_host_fragment)
+                    navController.navigate(R.id.crisesLayout)
+                }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true

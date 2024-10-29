@@ -11,6 +11,7 @@ import com.example.fragmentst.databinding.FragmentInicioBinding
 class Inicio : Fragment() {
 
     private lateinit var binding: FragmentInicioBinding
+
     // Declare a property for the binding
 
     override fun onCreateView(

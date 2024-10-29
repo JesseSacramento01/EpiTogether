@@ -2,6 +2,8 @@ package com.example.fragmentst.model
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fragmentst.db.Crise
@@ -11,6 +13,12 @@ import kotlinx.coroutines.launch
 
 class CriseViewModel(application: Application, private val repository: CriseRepository) :  AndroidViewModel(application) {
 
+    private val _itemList = MutableLiveData<List<Crise>>()
+    val itemList: LiveData<List<Crise>> get() = _itemList
+
+    fun setItems(newList: List<Crise>){
+        _itemList.value = newList
+    }
 
     // Function to insert data
     fun insertData(crise: Crise) {
@@ -19,12 +27,8 @@ class CriseViewModel(application: Application, private val repository: CriseRepo
         }
     }
 
-    fun getAllCrises(): List<Crise> {
-        var crisesList: List<Crise> = listOf()
-        viewModelScope.launch {
-            crisesList = repository.getAllCrises()
-        }
-        return crisesList
+    fun getAllCrises(): LiveData<List<Crise>> {
+        return repository.getAllCrises()
     }
 
     suspend fun getCriseById(id: Int): Crise? {

@@ -3,20 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Medicamentos">
+    tools:context=".CrisesLayout">
 
-
-    <ImageView
-        android:id="@+id/addMedication"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/plus" />
-
-    <!-- res/layout/fragment_medication_grid.xml -->
     <GridView
-        android:id="@+id/medication_grid_view"
+        android:id="@+id/crises_grid_view"
         android:layout_width="match_parent"
         android:layout_height="533dp"
         android:layout_marginTop="100dp"

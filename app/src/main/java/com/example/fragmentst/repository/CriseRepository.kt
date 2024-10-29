@@ -1,6 +1,7 @@
 package com.example.fragmentst.repository
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import com.example.fragmentst.db.Crise
 import com.example.fragmentst.db.EpiTogetherDB
 import com.example.fragmentst.db.dao.CriseDao
@@ -15,7 +16,7 @@ class CriseRepository(app: Application) {
         criseDao.insert(crise)
     }
 
-    suspend fun getAllCrises(): List<Crise> {
+    fun getAllCrises(): LiveData<List<Crise>> {
         return criseDao.getAllCrises()
     }
 
