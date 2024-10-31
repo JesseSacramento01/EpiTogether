@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root) // Set the content view using the binding's root
 
-        // Handle window insets (e.g., for handling notches, status bar, etc.)
+        // Handle window insets
         ViewCompat.setOnApplyWindowInsetsListener(binding.drawerLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -46,13 +46,25 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navigationView
 
         // Set up the ActionBarDrawerToggle
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        toggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
 
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         // Set up navigation item selection
         navView.setNavigationItemSelectedListener {
+
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }
+
+
             when (it.itemId) {
                 R.id.nav_criarConta -> {
                     Toast.makeText(this, "Criar Conta Clicked", Toast.LENGTH_SHORT).show()
@@ -75,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.crisesLayout)
                 }
             }
-            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
 
@@ -85,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.inicio)
         }
 
-        binding.healthSection.setOnClickListener{
+        binding.healthSection.setOnClickListener {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.saude)
         }
@@ -94,11 +105,22 @@ class MainActivity : AppCompatActivity() {
         val buttonContainer: LinearLayout = binding.linearLayoutH
         val addButton: ImageButton = binding.newRegisterButton
 
+
         addButton.setOnClickListener {
             if (buttonContainer.visibility == View.GONE) {
-                buttonContainer.visibility = View.VISIBLE
+                addButton.isEnabled = false
+                addButton.postDelayed({ addButton.isEnabled = true }, 300)
+                buttonContainer.apply {
+                    visibility = View.VISIBLE
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(300).start()
+                }
             } else {
-                buttonContainer.visibility = View.GONE
+                buttonContainer.animate()
+                    .alpha(0f)
+                    .setDuration(300)
+                    .withEndAction { buttonContainer.visibility = View.GONE }
+                    .start()
             }
         }
 
@@ -112,7 +134,9 @@ class MainActivity : AppCompatActivity() {
             val navController = findNavController(R.id.nav_host_fragment)
             // Navigate to the Fragment directly
             navController.navigate(R.id.registarCrise)
-            buttonContainer.visibility = View.GONE // Make sure it disappears once the option is chosen
+
+            buttonContainer.visibility =
+                View.GONE // Make sure it disappears once the option is chosen
         }
     }
 }

@@ -199,7 +199,7 @@ class RegistarCrise : Fragment() {
                 .setMessage("Crise Registrada com Sucesso! ")
                 .setPositiveButton("OK") { dialog, _ ->
 
-                    val currentCrise = Crise(5,
+                    val currentCrise = Crise(sharedViewModel.idUtilizador,
                         sharedViewModel.date, sharedViewModel.time,
                         sharedViewModel.duration, sharedViewModel.cycleSpinner,
                         checkBoxViewModel.tipoMovimento, checkBoxViewModel.localizacaoMovimento,
@@ -220,6 +220,8 @@ class RegistarCrise : Fragment() {
 
                     dialog.dismiss()
                     findNavController().navigate(R.id.action_registarCrise_to_inicio2)
+                    setSharedViewModelVarToNull()
+
                 }
                 .setNegativeButton("Cancel", null)
 
@@ -343,9 +345,18 @@ class RegistarCrise : Fragment() {
             .show()
     }
 
-    fun addItem(item: Crise) {
+    private fun addItem(item: Crise) {
         val currentList = criseViewModel.itemList.value.orEmpty().toMutableList()
         currentList.add(item)
         criseViewModel.setItems(currentList)
+    }
+
+    private fun setSharedViewModelVarToNull() {
+        sharedViewModel.time = null
+        sharedViewModel.date = null
+        sharedViewModel.duration = null
+        sharedViewModel.cycleSpinner = null
+        sharedViewModel.locationSpinner = null
+        sharedViewModel.activitySpinner = null
     }
 }

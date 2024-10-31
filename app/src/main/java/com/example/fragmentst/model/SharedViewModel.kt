@@ -9,4 +9,5 @@ class SharedViewModel : ViewModel() {
         var locationSpinner: String? = null
         var cycleSpinner : String? = null
         var activitySpinner: String? = null
+        var idUtilizador: Int = 0
 }

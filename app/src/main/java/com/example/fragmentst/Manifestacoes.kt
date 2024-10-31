@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.PopupWindow
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -25,6 +24,7 @@ class Manifestacoes : Fragment() {
     private val checkBoxViewModel: CheckBoxViewModel by activityViewModels()
     private var currentPopupWindow: PopupWindow? = null
     private var currentCheckBoxOption: String? = null
+    private lateinit var checkBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,7 +127,7 @@ class Manifestacoes : Fragment() {
 
             // Loop through each item and create a CheckBox dynamically
             for ((index, item) in items.withIndex()) {
-                val checkBox = CheckBox(requireContext())
+                checkBox = CheckBox(requireContext())
                 checkBox.text = item  // Set the label for the CheckBox
 
                 // Add the CheckBox to the LinearLayout container
@@ -136,31 +136,19 @@ class Manifestacoes : Fragment() {
                 // Set the checked state from ViewModel
                 checkBox.isChecked = states[index]
 
+
                 // Set an OnCheckedChangeListener to handle the click event
                 checkBox.setOnCheckedChangeListener { _, isChecked ->
-                    checkBoxViewModel.updateCheckBoxState(buttonID,index, isChecked)
-                    if (isChecked) {
+                    checkBoxViewModel.updateCheckBoxState(buttonID, index, isChecked)
 
-                        currentCheckBoxOption = checkBox.text.toString()
-                        // Handle the checkbox being checked
-                        Toast.makeText(
-                            requireContext(),
-                            "${checkBox.text} selected",
-                            Toast.LENGTH_SHORT
-
-                        ).show()
+                    currentCheckBoxOption = if (isChecked) {
+                        checkBox.text.toString()
                     } else {
-
-                        currentCheckBoxOption = checkBox.text.toString()
-                        // Handle the checkbox being unchecked
-                        Toast.makeText(
-                            requireContext(),
-                            "${checkBox.text} deselected",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        checkBox.text.toString()
                     }
                 }
             }
+        })
 
 
             if (popupView.parent != null) {
@@ -179,13 +167,14 @@ class Manifestacoes : Fragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.popup_background)
             )
 
-            popupWindow.showAsDropDown(button)
-            currentPopupWindow = popupWindow
+            popupWindow.isOutsideTouchable = true
+            popupWindow.isFocusable = true
 
-            // Dismiss the popup when it's clicked outside
+            popupWindow.showAsDropDown(button)
+
             popupWindow.setOnDismissListener {
-                currentPopupWindow = null // Clear the reference when dismissed
+                currentPopupWindow = null
             }
-        })
+
     }
 }

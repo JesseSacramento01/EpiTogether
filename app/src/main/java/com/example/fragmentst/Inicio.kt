@@ -32,6 +32,7 @@ class Inicio : Fragment() {
         val calendarView: CalendarView = binding.calendarView
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             // Handle date selection
+
         }
     }
 }
