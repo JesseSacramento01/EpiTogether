@@ -1,10 +1,9 @@
-package com.example.fragmentst.model
+package com.example.fragmentst.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fragmentst.db.Crise
 import com.example.fragmentst.repository.CriseRepository

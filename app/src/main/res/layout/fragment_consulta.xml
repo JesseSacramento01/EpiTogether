@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Consulta">
+    tools:context=".model.Consulta">
 
 
     <!-- res/layout/fragment_medication_grid.xml -->
 
-    <ImageView
-        android:id="@+id/imageView7"
+    <ImageButton
+        android:id="@+id/addConsulta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/plus" />
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/plus"  />
 
     <GridView
         android:id="@+id/consulta_grid_view"
         android:layout_width="match_parent"
         android:layout_height="533dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"

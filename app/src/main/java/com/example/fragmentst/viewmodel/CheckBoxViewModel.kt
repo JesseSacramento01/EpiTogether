@@ -1,4 +1,4 @@
-package com.example.fragmentst.model
+package com.example.fragmentst.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

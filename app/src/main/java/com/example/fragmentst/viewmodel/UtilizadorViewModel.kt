@@ -1,4 +1,4 @@
-package com.example.fragmentst.model
+package com.example.fragmentst.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -15,7 +15,7 @@ class UtilizadorViewModel(app: Application, private var repository: UtilizadorRe
 
     val utilizadorListFlow: Flow<List<Utilizador>> = repository.getAllUtilizadores()
 
-    fun insertData(utilizador: Utilizador) {
+    suspend fun insertData(utilizador: Utilizador) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertData(utilizador)
         }

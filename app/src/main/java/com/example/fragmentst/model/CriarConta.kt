@@ -1,7 +1,6 @@
-package com.example.fragmentst
+package com.example.fragmentst.model
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,24 +9,21 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.R
 import com.example.fragmentst.databinding.FragmentCriarContaBinding
-import com.example.fragmentst.db.Crise
 import com.example.fragmentst.db.Utilizador
-import com.example.fragmentst.model.CriseViewModel
-import com.example.fragmentst.model.CriseViewModelFactory
-import com.example.fragmentst.model.UtilizadorViewModel
-import com.example.fragmentst.model.UtilizadorViewModelFactory
-import com.example.fragmentst.repository.CriseRepository
+import com.example.fragmentst.viewmodel.UtilizadorViewModel
+import com.example.fragmentst.viewmodel.UtilizadorViewModelFactory
 import com.example.fragmentst.repository.UtilizadorRepository
 import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -41,12 +37,6 @@ class CriarConta : Fragment() {
     private lateinit var utilizadorViewModel: UtilizadorViewModel
     var spGenero = ""
     var tipoUtilizador = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -140,38 +130,44 @@ class CriarConta : Fragment() {
 
                 datePicker!!.addOnPositiveButtonClickListener { selection ->
 
-                    val selectedDate = Date(selection)
-                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    binding.tvDataNascimento.text = dateFormat.format(selectedDate)
+                    lifecycleScope.launch {
+                        val formattedDate = withContext(Dispatchers.Default) {
+                            // Perform the date formatting operation in the background thread
+                            val selectedDate = Date(selection)
+                            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                            dateFormat.format(selectedDate)
+                        }
+                        binding.tvDataNascimento.text = formattedDate
+                    }
                 }
-            }
 
-            binding.registarButton.setOnClickListener {
+                binding.registarButton.setOnClickListener {
 
-                val name = binding.etNome.text.toString()
-                val email = binding.etEmail.text.toString()
-                val password = binding.etPassword.text.toString()
-                val birthDate = binding.tvDataNascimento.text.toString()
-                val tel = binding.etTelefone.text.toString()
-                val address = binding.etEndereco.text.toString()
+                    val name = binding.etNome.text.toString()
+                    val email = binding.etEmail.text.toString()
+                    val password = binding.etPassword.text.toString()
+                    val birthDate = binding.tvDataNascimento.text.toString()
+                    val tel = binding.etTelefone.text.toString()
+                    val address = binding.etEndereco.text.toString()
 
-                val utilizador = Utilizador(
-                    name, email, password, tipoUtilizador, birthDate, spGenero,
-                    tel, address
-                )
+                    val utilizador = Utilizador(
+                        name, email, password, tipoUtilizador, birthDate, spGenero,
+                        tel, address
+                    )
 
-                lifecycleScope.launch {
-                    utilizadorViewModel.insertData(utilizador)
-                    val dialogBuilder = AlertDialog.Builder(requireContext())
-                        .setTitle("Registo de Conta")
-                        .setMessage("Conta Registrada com Sucesso!")
-                        .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-                    dialogBuilder.create().show()
+                    lifecycleScope.launch {
+                        utilizadorViewModel.insertData(utilizador)
+                        val dialogBuilder = AlertDialog.Builder(requireContext())
+                            .setTitle("Registo de Conta")
+                            .setMessage("Conta Registrada com Sucesso!")
+                            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                        dialogBuilder.create().show()
 
-                    findNavController().navigate(R.id.action_criarConta_to_login)
+                        findNavController().navigate(R.id.action_criarConta_to_login)
+                    }
                 }
-            }
 
+            }
         }
     }
 }

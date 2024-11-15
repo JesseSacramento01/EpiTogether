@@ -10,8 +10,6 @@
 
 
 
-
-
     <!-- Main content -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,7 +41,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:contentDescription="@string/button_of_the_homepage"
-            android:src="@drawable/baseline_home_24"
+            android:background="@drawable/baseline_home_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,7 +52,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="32dp"
             android:contentDescription="@string/button_of_the_health_section"
-            android:src="@drawable/baseline_heart_broken_24"
+            android:background="@drawable/baseline_heart_broken_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/homePage" />
 
@@ -64,9 +62,10 @@
             android:layout_height="48dp"
             android:layout_marginStart="32dp"
             android:contentDescription="@string/button_to_create_a_new_register"
+            android:background="@drawable/baseline_add_circle_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/healthSection"
-            app:srcCompat="@drawable/baseline_add_circle_24" />
+             />
 
         <ImageButton
             android:id="@+id/feedButton"
@@ -74,7 +73,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="32dp"
             android:contentDescription="@string/button_to_the_feed_section"
-            android:src="@drawable/baseline_feed_24"
+            android:background="@drawable/baseline_feed_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/newRegisterButton" />
 
@@ -84,7 +83,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="32dp"
             android:contentDescription="@string/button_to_access_the_profile_section"
-            android:src="@drawable/baseline_person_24"
+            android:background="@drawable/baseline_person_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/feedButton"
 

@@ -1,13 +1,15 @@
-package com.example.fragmentst
+package com.example.fragmentst.model
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.R
 import com.example.fragmentst.databinding.FragmentMedicamentosBinding
 import com.example.fragmentst.db.Medicacao
-import com.example.fragmentst.model.MedicationAdapter
+import com.example.fragmentst.viewmodel.MedicationAdapter
 
 
 class Medicamentos : Fragment() {
@@ -36,4 +38,13 @@ class Medicamentos : Fragment() {
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.addMedication.setOnClickListener{
+            findNavController().navigate(R.id.action_medicamentos_to_medicacaoForm)
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.fragmentst.model
+package com.example.fragmentst.viewmodel
 
 import android.content.Context
 import android.view.LayoutInflater

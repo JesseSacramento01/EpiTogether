@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,59 +14,24 @@
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="Forma Terapêutica"
+        android:text="Tipo Profissional"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTime" />
 
     <TextView
-        android:id="@+id/nameLabel"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="72dp"
-        android:gravity="center"
-        android:text="Nome"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Name EditText -->
-
-    <!-- Start Date Label -->
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="@drawable/round_background"
-        android:backgroundTint="#000000"
-        android:hint="Medx8"
-        android:padding="8dp"
-        android:text="Medx8"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/nameLabel"
-        app:layout_constraintTop_toTopOf="@id/nameLabel"
-        app:layout_constraintWidth_percent="0.6" />
-
-    <!-- Start Date EditText -->
-    <TextView
         android:id="@+id/labelStartDate"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
         android:gravity="center"
         android:text="Data de Início"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameLabel" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
-    <!-- End Date Label -->
-
-    <!-- End Date EditText -->
     <EditText
         android:id="@+id/editTextStartDate"
         android:layout_width="0dp"
@@ -75,37 +41,9 @@
         android:hint="12/02/2024"
         android:padding="8dp"
         android:text="12/02/2024"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/labelStartDate"
         app:layout_constraintTop_toTopOf="@id/labelStartDate"
-        app:layout_constraintWidth_percent="0.6" />
-
-    <TextView
-        android:id="@+id/labelEndDate"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:text="Data de Fim"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/labelStartDate" />
-
-    <EditText
-        android:id="@+id/editTextEndDate"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="@drawable/round_background"
-        android:backgroundTint="#000000"
-        android:hint="12/02/2024"
-        android:padding="8dp"
-        android:text="12/02/2024"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/labelEndDate"
-        app:layout_constraintTop_toTopOf="@id/labelEndDate"
         app:layout_constraintWidth_percent="0.6" />
 
 
@@ -115,11 +53,11 @@
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="Dose"
+        android:text="Nome"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/labelEndDate" />
+        app:layout_constraintTop_toBottomOf="@+id/labelFormaTerapeutica" />
 
     <EditText
         android:id="@+id/editTextDose"
@@ -130,7 +68,6 @@
         android:hint="12 mg"
         android:padding="8dp"
         android:text="12 mg"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/labelDose"
         app:layout_constraintTop_toTopOf="@id/labelDose"
@@ -142,26 +79,22 @@
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="Regime"
+        android:text="Áreas de Cuidado"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/labelDose" />
 
-    <Spinner
+    <Button
         android:id="@+id/spinnerRegime"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:background="@drawable/round_background"
-        android:textAlignment="center"
+        android:background="@drawable/button_shape"
+        android:drawableEnd="@drawable/baseline_arrow_forward_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/labelRegime"
         app:layout_constraintTop_toTopOf="@id/labelRegime"
         app:layout_constraintWidth_percent="0.6" />
-
-    <!-- Time Label -->
-
-    <!-- Time EditText -->
 
     <TextView
         android:id="@+id/labelTime"
@@ -173,11 +106,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/labelRegime" />
-
-    <!-- Reminder Label -->
-
-    <!-- Reminder Switch -->
+        app:layout_constraintTop_toBottomOf="@id/labelStartDate" />
 
     <EditText
         android:id="@+id/editTextTime"
@@ -188,41 +117,16 @@
         android:hint="hh:mm"
         android:padding="8dp"
         android:text="19:11"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelTime"
         app:layout_constraintTop_toTopOf="@+id/labelTime"
         app:layout_constraintWidth_percent="0.6" />
-
-    <TextView
-        android:id="@+id/labelReminder"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="Lembrete"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/labelFormaTerapeutica" />
-
-    <Switch
-        android:id="@+id/switchReminder"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:thumbTint="#000000"
-        android:trackTint="#000000"
-        app:layout_constraintStart_toEndOf="@id/labelReminder"
-        app:layout_constraintTop_toTopOf="@id/labelReminder" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:gravity="center"
-        android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/labelFormaTerapeutica"
         app:layout_constraintTop_toTopOf="@+id/labelFormaTerapeutica" />
 
@@ -230,10 +134,41 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="152dp"
         android:text="Agendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="Notas"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/labelRegime"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/round_background"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="96dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

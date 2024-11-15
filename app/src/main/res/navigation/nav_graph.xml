@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/inicio"
-        android:name="com.example.fragmentst.Inicio"
+        android:name="com.example.fragmentst.model.Inicio"
         android:label=""
         tools:layout="@layout/fragment_inicio" >
         <action
@@ -22,10 +22,13 @@
         <action
             android:id="@+id/action_inicio_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_inicio_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/registarCrise"
-        android:name="com.example.fragmentst.RegistarCrise"
+        android:name="com.example.fragmentst.model.RegistarCrise"
         android:label=""
         tools:layout="@layout/fragment_registar_crise" >
         <action
@@ -37,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/manifestacoes2"
-        android:name="com.example.fragmentst.Manifestacoes"
+        android:name="com.example.fragmentst.model.Manifestacoes"
         android:label=""
         tools:layout="@layout/fragment_manifestacoes" >
         <action
@@ -46,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/saude"
-        android:name="com.example.fragmentst.Saude"
+        android:name="com.example.fragmentst.model.Saude"
         android:label=""
         tools:layout="@layout/fragment_saude" >
         <action
@@ -58,17 +61,25 @@
     </fragment>
     <fragment
         android:id="@+id/medicamentos"
-        android:name="com.example.fragmentst.Medicamentos"
+        android:name="com.example.fragmentst.model.Medicamentos"
         android:label="fragment_medicamentos"
-        tools:layout="@layout/fragment_medicamentos" />
+        tools:layout="@layout/fragment_medicamentos" >
+        <action
+            android:id="@+id/action_medicamentos_to_medicacaoForm"
+            app:destination="@id/medicacaoForm" />
+    </fragment>
     <fragment
         android:id="@+id/consulta"
-        android:name="com.example.fragmentst.Consulta"
+        android:name="com.example.fragmentst.model.Consulta"
         android:label="fragment_consulta"
-        tools:layout="@layout/fragment_consulta" />
+        tools:layout="@layout/fragment_consulta" >
+        <action
+            android:id="@+id/action_consulta_to_consultaForm"
+            app:destination="@id/consultaForm" />
+    </fragment>
     <fragment
         android:id="@+id/criarConta"
-        android:name="com.example.fragmentst.CriarConta"
+        android:name="com.example.fragmentst.model.CriarConta"
         android:label="CriarConta" >
         <action
             android:id="@+id/action_criarConta_to_login"
@@ -76,7 +87,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.fragmentst.Login"
+        android:name="com.example.fragmentst.model.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -88,7 +99,32 @@
     </fragment>
     <fragment
         android:id="@+id/crisesLayout"
-        android:name="com.example.fragmentst.CrisesLayout"
+        android:name="com.example.fragmentst.model.CrisesLayout"
         android:label="fragment_crises_layout"
         tools:layout="@layout/fragment_crises_layout" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.fragmentst.model.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicacaoForm"
+        android:name="com.example.fragmentst.model.MedicacaoForm"
+        android:label="MedicacaoForm" >
+        <action
+            android:id="@+id/action_medicacaoForm_to_saude"
+            app:destination="@id/saude" />
+    </fragment>
+    <fragment
+        android:id="@+id/consultaForm"
+        android:name="com.example.fragmentst.model.ConsultaForm"
+        android:label="ConsultaForm" >
+        <action
+            android:id="@+id/action_consultaForm_to_saude"
+            app:destination="@id/saude" />
+    </fragment>
 </navigation>

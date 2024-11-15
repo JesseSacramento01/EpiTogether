@@ -1,4 +1,4 @@
-package com.example.fragmentst
+package com.example.fragmentst.model
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -21,19 +21,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.R
 import com.example.fragmentst.databinding.FragmentRegistarCriseBinding
 import com.example.fragmentst.db.Crise
-import com.example.fragmentst.model.CheckBoxViewModel
-import com.example.fragmentst.model.CriseViewModel
-import com.example.fragmentst.model.CriseViewModelFactory
-import com.example.fragmentst.model.SharedViewModel
+import com.example.fragmentst.viewmodel.CheckBoxViewModel
+import com.example.fragmentst.viewmodel.CriseViewModel
+import com.example.fragmentst.viewmodel.CriseViewModelFactory
+import com.example.fragmentst.viewmodel.SharedViewModel
 import com.example.fragmentst.repository.CriseRepository
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -41,20 +39,16 @@ import java.util.Calendar
 
 class RegistarCrise : Fragment() {
 
-    private lateinit var binding:FragmentRegistarCriseBinding
+    private lateinit var binding: FragmentRegistarCriseBinding
 
     private lateinit var videoPickerLauncher: ActivityResultLauncher<Intent>
 
-    private val sharedViewModel : SharedViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var criseViewModel: CriseViewModel
     private val checkBoxViewModel: CheckBoxViewModel by activityViewModels()
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +56,6 @@ class RegistarCrise : Fragment() {
     ): View {
 
         binding = FragmentRegistarCriseBinding.inflate(inflater, container, false)
-
 
         // Initialize ActivityResultLauncher
         videoPickerLauncher = registerForActivityResult(
@@ -72,16 +65,28 @@ class RegistarCrise : Fragment() {
                 val data: Intent? = result.data
                 val selectedVideoUri: Uri? = data?.data
                 // Handle the selected video URI here
-                //if (selectedVideoUri != null) {
+                if (selectedVideoUri != null) {
 
-                //}
+                    val dialogBuilder = AlertDialog.Builder(requireContext())
+                        .setTitle("Video")
+                        .setMessage("Este vídeo será selecionado! ")
+                        .setPositiveButton("OK") { dialog, _ ->
+
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton("Cancel", null)
+                    dialogBuilder.create().show()
+                }
+
+
             }
         }
 
         val activitySpinner: Spinner = binding.atividadeSpinner
         val activityItems = listOf("Acordado", "A dormir", "Exercício Físico")
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, activityItems)
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, activityItems)
         activitySpinner.adapter = adapter
 
         activitySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -102,10 +107,11 @@ class RegistarCrise : Fragment() {
             }
         }
 
-        val cycleSpinner : Spinner = binding.ciclo
+        val cycleSpinner: Spinner = binding.ciclo
         val cycleItems = listOf("Manhã", "À Tarde", "À Noite")
 
-        val cycleAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cycleItems)
+        val cycleAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cycleItems)
         cycleSpinner.adapter = cycleAdapter
 
         cycleSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -125,10 +131,11 @@ class RegistarCrise : Fragment() {
             }
         }
 
-        val locationSpinner : Spinner = binding.locationSpinner
+        val locationSpinner: Spinner = binding.locationSpinner
         val locationItems = listOf("Casa", "Escola", "Rua", "Hospital")
 
-        val locationAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, locationItems)
+        val locationAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, locationItems)
         locationSpinner.adapter = locationAdapter
 
         locationSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -199,13 +206,15 @@ class RegistarCrise : Fragment() {
                 .setMessage("Crise Registrada com Sucesso! ")
                 .setPositiveButton("OK") { dialog, _ ->
 
-                    val currentCrise = Crise(sharedViewModel.idUtilizador,
+                    val currentCrise = Crise(
+                        sharedViewModel.idUtilizador,
                         sharedViewModel.date, sharedViewModel.time,
                         sharedViewModel.duration, sharedViewModel.cycleSpinner,
                         checkBoxViewModel.tipoMovimento, checkBoxViewModel.localizacaoMovimento,
                         checkBoxViewModel.corDaPele, checkBoxViewModel.respiracao,
                         checkBoxViewModel.estadoDeConciencia, checkBoxViewModel.outrasManifestacoes,
-                        null,sharedViewModel.locationSpinner, sharedViewModel.activitySpinner,null)
+                        null, sharedViewModel.locationSpinner, sharedViewModel.activitySpinner, null
+                    )
 
 
                     lifecycleScope.launch {
@@ -214,7 +223,8 @@ class RegistarCrise : Fragment() {
 
                     lifecycleScope.launch {
                         criseViewModel.itemList.observe(viewLifecycleOwner) { _ ->
-                                addItem(currentCrise)
+                            addItem(currentCrise)
+                            criseViewModel.itemList.removeObservers(viewLifecycleOwner)
                         }
                     }
 
@@ -234,12 +244,12 @@ class RegistarCrise : Fragment() {
             showDatePickerDialog(binding.textViewDate)
         }
 
-        binding.timeText.setOnClickListener{
-                showTimePicker { hour, minute ->
-                    val formattedTime = String.format("%02d:%02d".lowercase(), hour, minute)
-                    binding.timeText.text = getString(R.string.time_selected, formattedTime)
-                    sharedViewModel.time = binding.timeText.text.toString()
-                }
+        binding.timeText.setOnClickListener {
+            showTimePicker { hour, minute ->
+                val formattedTime = String.format("%02d:%02d".lowercase(), hour, minute)
+                binding.timeText.text = getString(R.string.time_selected, formattedTime)
+                sharedViewModel.time = binding.timeText.text.toString()
+            }
         }
 
         binding.durationText.setOnClickListener {
@@ -259,13 +269,15 @@ class RegistarCrise : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         // Create a DatePickerDialog
-        val datePickerDialog = DatePickerDialog(requireContext(), R.style.CustomDatePickerDialog,
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), R.style.CustomDatePickerDialog,
             { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDay: Int ->
                 // Set the selected date to the TextView
                 val date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 selectedDateTextView.text = date
                 sharedViewModel.date = selectedDateTextView.text.toString()
-            }, year, month, day)
+            }, year, month, day
+        )
 
         // Show the dialog
         datePickerDialog.show()
@@ -273,8 +285,10 @@ class RegistarCrise : Fragment() {
 
     private fun pickVideo() {
         val intent = Intent(Intent.ACTION_PICK)
-        intent.setDataAndType( MediaStore.Video.Media.EXTERNAL_CONTENT_URI, "video/*")
-        videoPickerLauncher.launch(intent)  // Launch the video picker
+        intent.setDataAndType(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, "video/*")
+        videoPickerLauncher.launch(intent)
+
+
     }
 
     /**
@@ -299,9 +313,10 @@ class RegistarCrise : Fragment() {
     }
 
     private fun showDurationPickerDialog() {
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_duration_picker, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_duration_picker, null)
 
-// Initialize the NumberPickers for minutes and seconds using dialogView
+        // Initialize the NumberPickers for minutes and seconds using dialogView
         val minutePicker = dialogView.findViewById<NumberPicker>(R.id.minute_picker)
         val secondPicker = dialogView.findViewById<NumberPicker>(R.id.second_picker)
 
@@ -320,7 +335,7 @@ class RegistarCrise : Fragment() {
 
 
 
-        // Create and show the AlertDialog
+
         AlertDialog.Builder(requireContext())
             .setTitle("Select Duration")
             .setView(dialogView)
@@ -331,7 +346,8 @@ class RegistarCrise : Fragment() {
                 val selectedSeconds = secondPicker.value
 
                 // Handle the selected duration (e.g., display it in a TextView or store it)
-                val formattedDuration = String.format("%02d:%02d".lowercase(), selectedMinutes, selectedSeconds)
+                val formattedDuration =
+                    String.format("%02d:%02d".lowercase(), selectedMinutes, selectedSeconds)
                 Toast.makeText(
                     requireContext(),
                     "Selected Duration: $formattedDuration",

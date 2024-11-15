@@ -1,4 +1,4 @@
-package com.example.fragmentst
+package com.example.fragmentst.model
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,9 +10,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.fragmentst.databinding.FragmentCrisesLayoutBinding
 import com.example.fragmentst.db.Crise
-import com.example.fragmentst.model.CriseViewModel
-import com.example.fragmentst.model.CriseViewModelFactory
-import com.example.fragmentst.model.CrisesAdapter
+import com.example.fragmentst.viewmodel.CriseViewModel
+import com.example.fragmentst.viewmodel.CriseViewModelFactory
+import com.example.fragmentst.viewmodel.CrisesAdapter
 import com.example.fragmentst.repository.CriseRepository
 
 

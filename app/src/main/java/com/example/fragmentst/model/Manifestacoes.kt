@@ -1,4 +1,4 @@
-package com.example.fragmentst
+package com.example.fragmentst.model
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,8 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.R
 import com.example.fragmentst.databinding.FragmentManifestacoesBinding
-import com.example.fragmentst.model.CheckBoxViewModel
+import com.example.fragmentst.viewmodel.CheckBoxViewModel
 
 
 class Manifestacoes : Fragment() {

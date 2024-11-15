@@ -1,19 +1,18 @@
-package com.example.fragmentst.model
+package com.example.fragmentst.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.fragmentst.repository.CriseRepository
 
-import com.example.fragmentst.repository.UtilizadorRepository
-
-class UtilizadorViewModelFactory (
+class CriseViewModelFactory(
     private val application: Application,
-    private val repository: UtilizadorRepository
+    private val repository: CriseRepository
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(UtilizadorViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(CriseViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return UtilizadorViewModel(application, repository) as T
+                return CriseViewModel(application, repository) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

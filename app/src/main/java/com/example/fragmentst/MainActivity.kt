@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+
+
         // Set up navigation item selection
         navView.setNavigationItemSelectedListener {
 
@@ -68,8 +70,8 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_criarConta -> {
                     Toast.makeText(this, "Criar Conta Clicked", Toast.LENGTH_SHORT).show()
-                    val navController = findNavController(R.id.nav_host_fragment)
                     // Navigate to the Fragment directly
+                    val navController = findNavController(R.id.nav_host_fragment)
                     navController.navigate(R.id.criarConta)
                 }
 
@@ -122,6 +124,11 @@ class MainActivity : AppCompatActivity() {
                     .withEndAction { buttonContainer.visibility = View.GONE }
                     .start()
             }
+        }
+
+        binding.profileButton.setOnClickListener {
+            val navController = findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.profile)
         }
 
         val registerSignsButton: Button = binding.registerSignsButton

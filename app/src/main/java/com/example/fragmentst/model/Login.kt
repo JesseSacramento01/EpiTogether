@@ -1,4 +1,4 @@
-package com.example.fragmentst
+package com.example.fragmentst.model
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -10,10 +10,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.fragmentst.R
 import com.example.fragmentst.databinding.FragmentLoginBinding
-import com.example.fragmentst.model.SharedViewModel
-import com.example.fragmentst.model.UtilizadorViewModel
-import com.example.fragmentst.model.UtilizadorViewModelFactory
+import com.example.fragmentst.viewmodel.SharedViewModel
+import com.example.fragmentst.viewmodel.UtilizadorViewModel
+import com.example.fragmentst.viewmodel.UtilizadorViewModelFactory
 import com.example.fragmentst.repository.UtilizadorRepository
 import kotlinx.coroutines.launch
 
@@ -22,8 +23,8 @@ class Login : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
     private lateinit var utilizadorViewModel: UtilizadorViewModel
-    private val sharedViewModel : SharedViewModel by activityViewModels()
-    private var sucessfulLogin = true
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var sucessfulLogin = false
 
 
     override fun onCreateView(
@@ -51,6 +52,8 @@ class Login : Fragment() {
         binding.btnLogin.setOnClickListener {
             // Collect the Flow in a lifecycle-aware way
             viewLifecycleOwner.lifecycleScope.launch {
+
+
                 utilizadorViewModel.utilizadorListFlow.collect { utilizadores ->
 
                     for (utilizador in utilizadores) {
@@ -62,23 +65,22 @@ class Login : Fragment() {
                             val dialogBuilder = AlertDialog.Builder(requireContext())
                                 .setTitle("Login")
                                 .setMessage("Login efectuado com sucesso! ")
-                                dialogBuilder.create().show()
+                            dialogBuilder.create().show()
 
                             sucessfulLogin = true
 
                             findNavController().navigate(R.id.action_login_to_inicio)
-                        }
-                        else{
-                            sucessfulLogin = false
+                            break
                         }
                     }
                 }
+                if (sucessfulLogin) {
+                    val dialogBuilder = AlertDialog.Builder(requireContext())
+                        .setTitle("Login")
+                        .setMessage("Dados de login incorretos! ")
+                    dialogBuilder.create().show()
             }
-            if( !sucessfulLogin ) {
-                val dialogBuilder = AlertDialog.Builder(requireContext())
-                    .setTitle("Login")
-                    .setMessage("Dados de login incorretos! ")
-                dialogBuilder.create().show()
+
             }
         }
 
